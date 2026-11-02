@@ -40,7 +40,7 @@ if (!empty($nome) && !empty($email) && !empty($senha)) {
 
     $_SESSION['mensagem'] = "Cadastro realizado com sucesso!";
 
-    header("Location: login.php");
+    header("Location: ../frontend/login.php");
     exit;
 
 } else {

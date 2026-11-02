@@ -4,6 +4,7 @@ $logado = isset($_SESSION['id']);
 $admin  = !empty($_SESSION['admin']);
 $titulo = $titulo ?? 'Catálogo';
 function h($v){ return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
+function foto_url($f){ if (!$f) return ''; return preg_match('#^https?://#', $f) ? $f : '../' . $f; }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

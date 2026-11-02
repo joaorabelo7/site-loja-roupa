@@ -54,3 +54,19 @@ dialog::backdrop{background:rgba(22,33,58,.55)}
 dialog h2{font-size:1.6rem}
 .modal-botoes{display:flex;gap:12px;justify-content:flex-end;margin-top:24px}
 dialog .btn{width:auto;margin-top:0}
+/* footer */
+body{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1;width:100%}
+.rodape{margin-top:64px;background:var(--ink);color:#E4E7EE}
+.rodape a{text-decoration:none}
+.rodape a:hover{color:#fff;text-decoration:underline}
+.rodape-grade{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto;padding:48px clamp(16px,4vw,48px)}
+.rodape .logo{color:#fff;font-size:1.6rem}
+.rodape-texto{max-width:34ch;color:#B8BECC;margin:12px 0 0}
+.rodape h3{font-size:1rem;margin:0 0 12px;color:#fff}
+.rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rodape-base{border-top:1px solid rgba(255,255,255,.15);padding:18px clamp(16px,4vw,48px);text-align:center;color:#B8BECC}
+@media (max-width:700px){.rodape-grade{grid-template-columns:1fr}}
+.dica{color:var(--muted);font-size:.85rem;margin:6px 0 0}
+.colar{margin-top:10px;padding:16px;border:2px dashed var(--line);border-radius:6px;text-align:center;color:var(--muted);font-size:.9rem;cursor:pointer}
+.colar:focus,.colar.ativa{border-color:var(--accent);color:var(--ink);background:#EEF4F1}

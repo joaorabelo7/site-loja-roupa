@@ -31,7 +31,7 @@ include 'header.php';
   <?php foreach ($produtos as $p): ?>
     <article class="produto">
       <?php if (!empty($p['foto'])): ?>
-        <img src="<?= h($p['foto']) ?>" alt="<?= h($p['nome']) ?>" loading="lazy">
+        <img src="<?= h(foto_url($p['foto'])) ?>" alt="<?= h($p['nome']) ?>" loading="lazy">
       <?php else: ?>
         <div class="sem-foto">Sem foto</div>
       <?php endif; ?>
