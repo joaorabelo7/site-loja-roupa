@@ -7,6 +7,7 @@ $id_produto    = $_POST['id_produto']    ?? '';
 $nome_produto  = $_POST['nome_produto']  ?? "";
 $desc_produto  = $_POST['desc_produto']  ?? "";
 $preco_produto = $_POST['preco_produto'] ?? "";
+$caimento_produto = in_array($_POST['caimento_produto'] ?? '', ['slim', 'regular', 'boxy', 'oversized'], true) ? $_POST['caimento_produto'] : null;
 $novaFoto = '';
 
 try {
@@ -19,13 +20,14 @@ try {
     }
 
     $stmt = $pdo->prepare("UPDATE produto
-                           SET nome = :nome, descricao = :descricao, preco = :preco, foto = :foto
+                           SET nome = :nome, descricao = :descricao, preco = :preco, foto = :foto, caimento = :caimento
                            WHERE id_produto = :id_produto");
     $stmt->execute([
         ':nome'       => $nome_produto,
         ':descricao'  => $desc_produto,
         ':preco'      => $preco_produto,
         ':foto'       => $novaFoto ?: $fotoAtual,
+        ':caimento'   => $caimento_produto,
         ':id_produto' => $id_produto
     ]);
 

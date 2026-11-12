@@ -35,7 +35,7 @@ include 'header.php';
       <?php else: ?>
         <div class="sem-foto">Sem foto</div>
       <?php endif; ?>
-      <h2><?= h($p['nome']) ?></h2>
+      <h2><a class="link-card" href="produto.php?id=<?= (int)$p['id_produto'] ?>"><?= h($p['nome']) ?></a></h2>
       <p class="desc"><?= h($p['descricao']) ?></p>
       <span class="preco">R$ <?= number_format((float)$p['preco'], 2, ',', '.') ?></span>
     </article>

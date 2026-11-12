@@ -38,7 +38,7 @@ $status = $_GET['status'] ?? '';
   <?php foreach ($produtos as $p): ?>
     <tr>
       <td><?php if (!empty($p['foto'])): ?><img class="mini" src="<?= h(foto_url($p['foto'])) ?>" alt=""><?php else: ?><div class="mini sem-foto"></div><?php endif; ?></td>
-      <td><strong><?= h($p['nome']) ?></strong><br><span class="desc-tab"><?= h($p['descricao']) ?></span></td>
+      <td><strong><?= h($p['nome']) ?></strong><br><span class="desc-tab"><?= h($p['descricao']) ?></span><?php if (!empty($p['caimento'])): ?><br><span class="tag"><?= h($p['caimento']) ?></span><?php endif; ?></td>
       <td class="preco">R$ <?= number_format((float)$p['preco'], 2, ',', '.') ?></td>
       <td>
         <div class="acoes">
@@ -47,8 +47,10 @@ $status = $_GET['status'] ?? '';
             data-nome="<?= h($p['nome']) ?>"
             data-desc="<?= h($p['descricao']) ?>"
             data-preco="<?= h($p['preco']) ?>"
-            data-foto="<?= h(foto_url($p['foto'])) ?>">Editar produto</button>
-          <form action="../backend/excluir_produto.php" method="post" onsubmit="return confirm('Excluir &quot;<?= h($p['nome']) ?>&quot;?')">
+            data-foto="<?= h(foto_url($p['foto'])) ?>"
+            data-caimento="<?= h($p['caimento'] ?? '') ?>">Editar produto</button>
+          <a class="btn sec peq" href="admin_tamanhos.php?id=<?= (int)$p['id_produto'] ?>">Tamanhos</a>
+          <form action="../backend/processa_excluir.php" method="post" onsubmit="return confirm(<?= h(json_encode('Excluir "' . $p['nome'] . '"?', JSON_UNESCAPED_UNICODE)) ?>)">
             <input type="hidden" name="id_produto" value="<?= (int)$p['id_produto'] ?>">
             <button class="btn perigo" type="submit">Excluir</button>
           </form>
@@ -71,6 +73,14 @@ $status = $_GET['status'] ?? '';
     <textarea id="f_desc" name="desc_produto" rows="3"></textarea>
     <label for="f_preco">Preço (R$)</label>
     <input id="f_preco" name="preco_produto" type="number" step="0.01" min="0" required>
+    <label for="f_caimento">Caimento da peça</label>
+    <select id="f_caimento" name="caimento_produto">
+      <option value="">Não informado</option>
+      <option value="slim">Slim (ajustado)</option>
+      <option value="regular">Regular</option>
+      <option value="boxy">Boxy (reto e largo)</option>
+      <option value="oversized">Oversized (bem folgado)</option>
+    </select>
     <label for="f_arquivo">Foto do produto</label>
     <input id="f_arquivo" name="foto_arquivo" type="file" accept="image/jpeg,image/png,image/webp">
     <div class="colar" id="zonaColar" tabindex="0"></div>
@@ -87,7 +97,7 @@ $status = $_GET['status'] ?? '';
 const modal = document.getElementById('modal');
 const form  = document.getElementById('formProduto');
 const previa = document.getElementById('f_previa');
-const campos = { id:f_id, nome:f_nome, desc:f_desc, preco:f_preco, arquivo:f_arquivo };
+const campos = { id:f_id, nome:f_nome, desc:f_desc, preco:f_preco, caimento:f_caimento, arquivo:f_arquivo };
 
 function mostrarPrevia(src){
   previa.hidden = !src;
@@ -102,6 +112,7 @@ function abrir(dados){
   campos.nome.value  = edit ? dados.nome : '';
   campos.desc.value  = edit ? dados.desc : '';
   campos.preco.value = edit ? dados.preco : '';
+  campos.caimento.value = edit ? (dados.caimento || '') : '';
   campos.arquivo.value = '';
   zonaColar.textContent = TEXTO_ZONA;
   mostrarPrevia(edit ? dados.foto : '');

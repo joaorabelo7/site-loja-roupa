@@ -70,3 +70,27 @@ main{flex:1;width:100%}
 .dica{color:var(--muted);font-size:.85rem;margin:6px 0 0}
 .colar{margin-top:10px;padding:16px;border:2px dashed var(--line);border-radius:6px;text-align:center;color:var(--muted);font-size:.9rem;cursor:pointer}
 .colar:focus,.colar.ativa{border-color:var(--accent);color:var(--ink);background:#EEF4F1}
+/* produto + provador */
+.produto{position:relative}
+.link-card{text-decoration:none}
+.link-card::after{content:"";position:absolute;inset:0}
+.acoes{position:relative;z-index:1}
+.detalhe{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start}
+.detalhe h1{font-size:clamp(1.8rem,4vw,2.6rem)}
+.foto-grande{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px;background:#fff}
+.preco.grande{font-size:1.6rem;margin:8px 0 16px}
+.provador{margin-top:28px;padding:24px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.provador h2{font-size:1.4rem}
+.provador .btn{margin-top:20px}
+.linha3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+select{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;background:#fff;font:inherit;color:var(--ink)}
+.resultado{margin-top:20px}
+.resultado:empty{display:none}
+.selo{display:inline-grid;place-items:center;min-width:64px;height:64px;padding:0 12px;border-radius:8px;background:var(--accent);color:#fff;font:800 1.8rem 'Bricolage Grotesque',sans-serif}
+@media (max-width:760px){.detalhe{grid-template-columns:1fr}.linha3{grid-template-columns:1fr}}
+textarea{resize:vertical}
+.tab-medidas{margin:12px 0 0}
+.tab-medidas summary{cursor:pointer;font-weight:600}
+.tab-medidas .tabela-wrap{margin-top:10px}
+.tab-medidas .tabela th,.tab-medidas .tabela td{padding:8px 12px}
+.tag{display:inline-block;margin-top:4px;padding:2px 10px;border-radius:999px;background:#E6F2EC;color:#134032;font-size:.8rem;font-weight:600;text-transform:capitalize}
