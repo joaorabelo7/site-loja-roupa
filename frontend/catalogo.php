@@ -1,5 +1,5 @@
 <?php
-require_once '../backend/conexao.php';
+require_once __DIR__ . '/backend/conexao.php';
 $titulo = 'Catálogo';
 
 try {

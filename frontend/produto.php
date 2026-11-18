@@ -1,5 +1,5 @@
 <?php
-require_once '../backend/conexao.php';
+require_once __DIR__ . '/backend/conexao.php';
 $id = (int)($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM produto WHERE id_produto = ?");
 $stmt->execute([$id]);

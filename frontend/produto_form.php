@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id'])) { header('Location: login.php'); exit; }
-require_once '../backend/conexao.php';
+require_once __DIR__ . '/backend/conexao.php';
 
 $p = ['id_produto'=>'','nome'=>'','descricao'=>'','preco'=>'','foto'=>''];
 $editando = false;

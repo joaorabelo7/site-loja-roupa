@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (empty($_SESSION['admin'])) { header('Location: login.php'); exit; }
-require_once '../backend/conexao.php';
+require_once __DIR__ . '/backend/conexao.php';
 
 $id = (int)($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT nome, modelagem FROM produto WHERE id_produto = ?");
